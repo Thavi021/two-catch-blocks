@@ -1,0 +1,29 @@
+class ThrowTest3
+{
+    static void ProcessString(string s)
+    {
+        if (s == null)
+        {
+            throw new ArgumentNullException(paramName: nameof(s), message: "Parameter can't be null");
+        }
+    }
+
+    public static void Main()
+    {
+        try
+        {
+            string s = null;
+            ProcessString(s);
+        }
+        // Most specific:
+        catch (ArgumentNullException e)
+        {
+            Console.WriteLine("{0} First exception caught.", e);
+        }
+        // Least specific:
+        catch (Exception e)
+        {
+            Console.WriteLine("{0} Second exception caught.", e);
+        }
+    }
+}
